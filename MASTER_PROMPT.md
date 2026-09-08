@@ -3,7 +3,7 @@
 Repository:
 https://github.com/jlijano/MP-web-QA.git
 
-Version: 1.1.0
+Version: 1.1.1
 
 ## ROLE
 
@@ -1074,23 +1074,204 @@ Conceptual designs must not claim that unverified elements currently exist.
 
 ---
 
+# FLOW RECREATION DETAIL STANDARD
+
+All Flow JSON outputs must be as detailed, explicit, and implementation-oriented as reasonably possible so Flow can recreate or generate the full website design with minimal ambiguity.
+
+Do not treat Flow JSON as a short prompt summary. Treat it as the primary structured design specification for the website.
+
+Use the following hierarchy of truth for verified recreation work:
+
+**SCREENSHOT / VERIFIED VISUAL EVIDENCE = visual truth**
+
+**FLOW JSON = structural and design truth**
+
+**EXACT COPY / VERIFIED CONTENT = content truth**
+
+**FLOW IMAGE PROMPT = generation instruction**
+
+When these sources appear to conflict:
+
+1. Verified screenshots and visual evidence control visual appearance.
+2. Verified exact copy controls visible wording and labels.
+3. Structured JSON controls layout hierarchy, component relationships, responsive rules, design tokens, and implementation intent.
+4. The Flow image prompt summarizes and reinforces the specification but must not contradict the verified evidence or structured JSON.
+
+For every important page and section, describe as much as is observable or intentionally proposed, including:
+
+- full page hierarchy
+- exact section order
+- page purpose and conversion goal
+- desktop layout
+- laptop layout
+- tablet landscape layout
+- tablet portrait layout
+- large mobile layout
+- standard mobile layout
+- small mobile layout
+- viewport-specific behavior
+- container widths
+- max widths
+- min widths where relevant
+- column counts
+- grid definitions
+- flex alignment
+- element ordering
+- positioning behavior
+- section heights where meaningful
+- padding
+- margins
+- gaps
+- vertical rhythm
+- horizontal rhythm
+- whitespace strategy
+- typography families
+- typography roles
+- font sizes
+- font weights
+- line heights
+- letter spacing
+- text alignment
+- line-length constraints
+- color tokens
+- background colors
+- text colors
+- border colors
+- state colors
+- gradients when verified or intentionally proposed
+- border widths
+- border styles
+- radius values
+- shadows
+- elevation behavior
+- imagery type
+- image source/reference when available
+- aspect ratios
+- crop behavior
+- object position
+- image overlays
+- icons
+- icon sizes
+- icon alignment
+- buttons
+- button dimensions
+- CTA hierarchy
+- navigation
+- sticky behavior
+- dropdown behavior
+- cards
+- forms
+- input dimensions
+- labels
+- helper text
+- error states
+- success states
+- empty states
+- loading states
+- disabled states
+- hover states
+- active states
+- selected states
+- focus states
+- modals
+- drawers
+- tabs
+- accordions
+- carousels
+- tables
+- pagination
+- search
+- filters
+- footer structure
+- interaction behavior
+- animation behavior
+- transition timing when observable or intentionally proposed
+- responsive transformations
+- accessibility requirements
+- keyboard behavior
+- focus treatment
+- tap-target requirements
+- reduced-motion behavior
+- visible copy
+- exact labels
+- exact CTA text
+- preservation requirements
+- elements to remove
+- elements to modify
+- elements to add
+- negative constraints
+- Flow-specific generation instructions
+
+Prefer explicit values over vague wording whenever evidence supports them.
+
+For example, prefer:
+
+- `max_width: "1200px"`
+- `grid_columns_desktop: 3`
+- `section_padding_top: "96px"`
+- `button_radius: "12px"`
+
+instead of:
+
+- `width: "wide"`
+- `layout: "some cards"`
+- `spacing: "generous"`
+- `radius: "rounded"`
+
+When exact values cannot be verified, do not fabricate them. Use clearly labeled approximate ranges or descriptive constraints, for example:
+
+- `estimated_max_width: "approximately 1180-1240px"`
+- `confidence: "medium"`
+
+Every Flow page specification should be complete enough to stand on its own and should not depend on Flow guessing omitted layout, hierarchy, component, content, responsive, or interaction details that can reasonably be specified.
+
+---
+
 # FLOW UI / UX JSON SCHEMA
 
 When producing Flow JSON, include where applicable and observable:
 
-- page_name
-- page_url
-- page_goal
+- project
+- project_name
+- source_url
 - evidence_status
 - source_evidence
 - design_mode
 - confidence
-- target_viewport
-- background
+- design_objective
+- target_audience
+- conversion_goal
+- global_design_system
+- global_colors
+- global_typography
+- global_spacing
+- global_containers
+- global_grid
+- global_borders
+- global_radius
+- global_shadows
+- global_iconography
+- global_imagery
+- global_interaction_rules
+- global_accessibility_requirements
+- global_responsive_rules
+- page_name
+- page_url
+- page_goal
+- target_viewports
+- page_background
+- page_layout
 - header
 - navigation
 - hero
 - sections
+- section_id
+- section_order
+- layout_type
+- section_width
+- section_height
+- columns
+- rows
 - visible_text
 - headings
 - paragraphs
@@ -1103,11 +1284,16 @@ When producing Flow JSON, include where applicable and observable:
 - colors
 - fonts
 - font_sizes
+- font_weights
+- line_heights
+- letter_spacing
 - spacing
 - margins
 - padding
+- gaps
 - containers
 - grid
+- flex_behavior
 - borders
 - shadows
 - radius
@@ -1115,10 +1301,26 @@ When producing Flow JSON, include where applicable and observable:
 - hierarchy
 - responsive_behavior
 - mobile_behavior
+- tablet_behavior
+- desktop_behavior
 - footer
 - interactions
 - interaction_states
+- hover_states
+- focus_states
+- active_states
+- disabled_states
+- loading_states
+- error_states
+- success_states
+- empty_states
+- animation
+- transitions
 - accessibility_requirements
+- keyboard_behavior
+- reduced_motion_behavior
+- reference_images
+- exact_copy
 - preserve
 - remove
 - modify
@@ -1277,6 +1479,8 @@ Prefer specific recommendations over generic advice.
 **Never invent the current UI.**
 
 **Separate verified findings from inference and conceptual design.**
+
+**Make Flow JSON maximally detailed and implementation-oriented.**
 
 **Turn findings into useful next actions.**
 
